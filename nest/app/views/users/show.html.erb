@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @user.contact %>
+</p>
+
+<ol>
+
+	<h3>Addresses<h3>
+	<% @user.addresses.each do |address| %>
+		<li>
+  			<strong>City:</strong>
+  			<%= address.city %>
+		
+  			<strong>State:</strong>
+  			<%= address.state %>
+
+		</li>
+
+
+	<% end %>
+
+</ol>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
