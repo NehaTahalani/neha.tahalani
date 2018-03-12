@@ -1,0 +1,62 @@
+<div class="page-header">
+  <%= link_to users_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_user_path(@user), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show user</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>First name:</dt>
+  <dd><%= @user.first_name %></dd>
+
+  <dt>Last name:</dt>
+  <dd><%= @user.last_name %></dd>
+
+  <dt>Email:</dt>
+  <dd><%= @user.email %></dd>
+
+  <dt>Dob:</dt>
+  <dd><%= @user.dob %></dd>
+
+  <dt>Contact:</dt>
+  <dd><%= @user.contact %></dd>
+
+  <h4>Adress Details</h4>
+  <% @user.addresses.each do |address| %>
+  
+    <dt>Line 1:</dt>
+    <dd><%= address.line_1 %></dd>
+    
+    <dt>Line 2:</dt>
+    <dd><%= address.line_2 %></dd>
+
+    <dt>Street:</dt>
+    <dd><%= address.street %></dd>
+    
+    <dt>City:</dt>
+    <dd><%= address.city %></dd>
+    
+    <dt>State:</dt>
+    <dd><%= address.state %></dd>
+    
+    <dt>Country:</dt>
+    <dd><%= address.country %></dd>
+
+    <dt>Postal Code:</dt>
+    <dd><%= address.postal_code %></dd>
+
+  </dl>
+
+  <%#= link_to 'Remove address', [@addresses.user ,address], method: :delete, data: { confirm: 'Are you sure?' } %>    
+
+
+  <br /><br /><br />
+<% end %>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

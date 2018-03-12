@@ -1,0 +1,22 @@
+<div class="page-header">
+  <%= link_to lineitems_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to @lineitem, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-info-sign"></span>
+    Show
+  <% end %>
+  <h1>Editing lineitem</h1>
+</div>
+
+<%= render 'form' %>
+
+<%= link_to  @line_item, :class => 'btn btn-warning',:title => 'Show', :rel => 'tooltip' do%>
+              <span class="glyphicon glyphicon-eye-open"></span> Show
+              <% end %>
+<%= link_to line_items_path , class: "btn btn-default", :title => 'Back', :rel => 'tooltip' do %>
+<span class="glyphicon glyphicon-step-backward"></span> Back
+<% end %>
+</div>
+

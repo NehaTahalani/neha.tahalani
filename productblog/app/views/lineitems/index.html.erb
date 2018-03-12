@@ -1,0 +1,43 @@
+<div class="page-header">
+  <%= link_to new_lineitem_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Lineitem
+  <% end %>
+  <h1>Listing lineitems</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Sku</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Product</th>
+            <th>Order</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @lineitems) do |lineitem| %>
+            <td><%= lineitem.sku %></td>
+            <td><%= lineitem.description %></td>
+            <td><%= lineitem.quantity %></td>
+            <td><%= lineitem.price %></td>
+            <td><%= lineitem.product_id %></td>
+            <td><%= lineitem.order_id %></td>
+            <td><%= link_to 'Show', lineitem %></td>
+        <td><%= link_to 'Edit', edit_lineitem_path(lineitem) %></td>
+        <td><%= link_to 'Destroy', lineitem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to  new_lineitem_path , :class => 'btn btn-md btn-default',:title => 'Add New Line Item', :rel => 'tooltip' do %>
+    <span class="glyphicon glyphicon-pencil"></span> New Address 
+    <% end %>

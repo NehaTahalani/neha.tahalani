@@ -1,0 +1,60 @@
+@import "bootstrap-variables.scss";
+@import "bootstrap-sprockets.scss";
+@import "bootstrap.scss";
+
+body {
+  padding-top: $navbar-height + 10px;
+}
+
+.page-header {
+  a.btn {
+    float: right;
+  }
+
+  a.btn + a.btn {
+    margin-right: 8px;
+  }
+}
+
+input[type="radio"], input[type="checkbox"] {
+  width: initial;
+  height: initial;
+  margin-top: 7px;
+}
+
+.image-size {
+  max-width: 50px;
+  max-height: 20px;
+}
+
+td {
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+}
+
+td:first-child {
+  padding-left: 0;
+}
+
+td:last-child {
+  padding-right: 0;
+}
+
+.spacer {
+  width: 15px;
+}
+
+label.required:after {
+  content:" *";
+}
+
+.required input {
+   padding-right: 25px;
+   background-image: url(...);
+   background-position: right top;
+}
+
+
+.form-group.required .control-label:after {content:"*";color:red;}
+
+

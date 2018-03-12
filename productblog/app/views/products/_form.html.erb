@@ -1,0 +1,81 @@
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%#= form.label :sku %>
+    <%= form.bootstrap_text_field :sku, id: :product_sku %>
+  </div>
+
+
+  <div class="required">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :product_name %>
+</div>
+
+<style>
+    .required input:after { content:"*"; }
+</style>
+
+
+  <!-- <div class="form-group required">
+
+    <label>Name:</label>*
+
+    <input type="text">
+
+</div> -->
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, id: :product_quantity %>
+  </div><br />
+
+  <div class="field">
+    <%= form.label :length %>Depth(cm):
+    <%= form.number_field :length, id: :product_length %>
+  
+    <%#= form.label :width %>Width(cm):
+    <%= form.number_field :width, id: :product_width %>
+  </div><br />
+
+  <div class="field">
+    <%#= form.label :height %>Height(cm):
+    <%= form.number_field :height, id: :product_height %>
+  
+    <%#= form.label :weight %>Weight(gm):
+    <%= form.number_field :weight, id: :product_weight %>
+  </div><br />
+
+  <div class="string required">
+    <%= form.label :price %>
+    <%= form.text_field :price, prepend: "$", append: ".00" %>
+  </div><br />
+
+  <div class="field">
+    <p>
+    <%= form.label :product_category_id %><br />
+    <%= form.collection_select :category_id, Category.all, :id, :name, :prompt => "Select a Category" %>
+    or create one:
+    <%= form.text_field :new_category_name %>
+  </p>
+  </div><br />
+
+  <div class='field'>
+    <%= form.file_field :image %>
+  </div></br />
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

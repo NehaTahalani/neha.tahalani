@@ -1,0 +1,30 @@
+<div class="page-header">
+  <%= link_to orders_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+
+  
+
+<%= form_for @order do |f| %>
+   User: <%= f.collection_select :user_id, @users, :id, :first_name %>
+   		Address: <%=  %>
+   <%#= f.submit %>
+<% end %>
+
+
+
+
+
+
+  <h1>New order</h1>
+</div>
+
+<%= render 'form' %>
+
+<%= form_tag(products_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Products" %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %><br /><br />
+
+

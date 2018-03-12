@@ -1,0 +1,79 @@
+<div class="fields">
+<h3>Address</h3>
+	
+		<p>
+			<%= f.label :line_1 %>
+			<%= f.text_area :line_1 %>
+		
+			<%= f.label :line_2 %>
+			<%= f.text_area :line_2 %>
+		</p>
+
+		<p>
+			<%= f.label :street %>
+			<%= f.text_field :street %><br /><br />
+		
+			<%#= f.label :city %>
+      		<%#= f.select :user_id, CITIES.dup, :prompt => "Select a city" %>	
+
+      		 City:</td> <td><%= f.select :city, ['Pune','Mumbai','Delhi'], :prompt => "Select a city" %>
+
+
+			<%#= f.label :state %>
+      		<%#= f.select :user_id, STATES.dup, :prompt => "Select a state" %>	
+
+      		 State:</td> <td><%= f.select :state, ['Maharashtra','UP','MP'], :prompt => "Select a state" %>
+
+			<%#= f.label :country %>
+      		<%#= f.select :user_id, COUNTRIES.dup, :prompt => "Select a country" %>	
+
+      		 Country:</td> <td><%= f.select :country, ['India','Singapour'], :prompt => "Select a country" %>
+
+      	</p>
+
+      	<p>
+			<%= f.label :postal_code %><br />
+			<%= f.number_field :postal_code %>
+
+			<%#= f.check_box :_destroy %>
+			<%#= f.label :_destroy, "Remove address" %>
+
+      	</p><br />
+
+
+
+      	<%#= link_to_remove_fields "remove", fbr />
+
+      	<%#= f.check_box :_destroy %>
+      	<%#= f.label :_destroy, "Remove address" %>
+      	<%= f.hidden_field :_destroy %>
+      	<%= link_to "remove address" , '#', class: "remove_fields" %>
+
+
+<br />
+
+<script>
+  $('select').change(function () {
+     var optionSelected = $(this).find("option:selected");
+     //var valueSelected  = optionSelected.val();
+     var textSelected   = optionSelected.text();
+     console.log(textSelected)
+     $.ajax({
+                    type: 'GET',
+                    url:  "/users/user_details/",
+                    data: { email: escape(textSelected)},
+                    dataType: 'json',
+
+                    success: function(r){
+                     v = r['variant'];
+                     console.log(v)
+                     
+                     $("#uid").val(r['id']);
+                      }
+                });
+ });
+</script>
+
+
+
+

@@ -1,0 +1,40 @@
+<p>
+  <strong>Line 1:</strong>
+  <%= address.line_1 %>
+</p>
+ 
+<p>
+  <strong>Line 2:</strong>
+  <%= address.line_2 %>
+</p>
+
+<p>
+  <strong>Street:</strong>
+  <%= address.street %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= address.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= address.state %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= address.country %>
+</p>
+
+<p>
+  <strong>Postal Code:</strong>
+  <%= address.postal_code %>
+</p>
+
+
+<p>
+  <%= link_to 'Destroy address', [address.user, address], method: :delete, data: { confirm: 'Are you sure?' } %>
+</p>
+

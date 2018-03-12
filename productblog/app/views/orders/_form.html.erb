@@ -1,0 +1,282 @@
+<%= form_for(@order, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <% if @order.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h4>
+
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<script type="text/javascript">
+//   $(document).ready(
+//     function(){
+//     addresses = $('#order_address_id')
+//      $('#order_user_id').change(function(){
+//       user = $('#order_user_id :selected').val();
+//       var options = $(addresses).filter("optgroup[label='#{user}']").(html);
+//       alert(addresses);
+//      $('#order_address_id').html(options);
+
+//   });
+
+// });
+
+
+  // var userData = JSON.parse(<%= @s.to_json %>);
+
+
+// $(document).ready({
+  
+//   $('order_user_id').on('change', function() {
+//   alert( this.value );
+// });
+//  //    function(){
+ 
+//  //        var SELLERID = $("#seller_id_kit_import").val();
+//  //        $.ajax({
+//  //          url: "/admin/kits/load_market_places_for_bulk_kit_upload?seller_id="+SELLERID,
+//  //          context: document.body
+//  //        }).done(function(data) {
+//  //        $("#product_bulk_import").html(data);
+//  //        });
+//  // });
+// });
+
+// $('#customer_id').on('change',function() {
+//   alert( this.value );
+// });
+// $(document).ready({
+$(document).on("change", '#customer_id', function() {
+   // alert('DJ' );
+   var user_id =  this.value;
+   alert(user_id);
+   $.ajax({
+        url: "/users/"+user_id+"/get_addresses", //+SELLERID,
+        type: "GET",
+        dataType: "json",
+        complete: function() {},
+        success: function(data) { 
+          alert(data);
+          $('#address_id').
+
+          $.each(data, function(addr){
+            $('#address_id').append(
+              //"<option value='"+addr['street']+ "'>"+addr['street']+"</option>"
+              "<option value='asd'> jsd </option>"
+              });
+            
+          })
+          //$(".display_btw").html(data["street"]); 
+        }
+      });
+  });
+// });
+
+
+</script>
+
+
+<div class="row">
+  <div class="field">
+   <%= f.label :user_id %>
+   <%= f.select :user_id, User.all.collect{|user| [user.first_name+" "+user.last_name, user.id]}, {:prompt => true}, {id: 'customer_id'} %>
+ </div>
+
+ <div class="field">
+   <%= f.label :address_id %>
+   <%= select_tag :address_id, options_for_select(['111', '222']), class: 'form-control', :include_blank => false, :required => false %>
+
+   <%#= f.collection_select :address_id, User.order(:id), :addresses, :id, :id, :street, {:prompt => true}, { id: 'order_address_id'} %>
+ </div>
+</div>
+
+<%= f.fields_for :address, @order.build_address do |address| %>
+<div class="field">
+
+  <%= address.label :line_1 %>
+  <%= address.text_field :line_1 %>
+
+  </div>
+  <% end %>
+
+
+
+  <!-- <div class="row">
+            <div class="field">
+              <%= f.label :user_id %>
+              <%= f.select :user_id, User.all.collect { |user| [user.first_name + " " + user.last_name , user.id]}, {:prompt => true}, {id: 'order_user_id'}%>
+            </div>
+            <div class="field">
+              <%= f.label :address_id %>
+              <%= f.grouped_collection_select :address_id, User.order(:id), :addresses, :id, :id, :line_1, {:prompt => true}, { id: 'order_address_id'} %>
+            </div>  
+</div> -->
+
+ <div class="form-group" >
+      <h3>User Details</h3>
+    
+          <%= f.fields_for :user, @order.build_user do |builder| %>
+            
+              
+                  <%= builder.label "Enter User Email Id :" %>
+              
+                          
+                <%= builder.text_field :email, id: "input", :required => true %>
+                
+            
+
+            
+              
+                <%= builder.label "First Name :" %>
+              
+              
+                <%= builder.text_field :first_name, id: "first_name", :required => true %>
+              
+          
+
+            
+                <%= builder.label "Last Name :" %>
+             
+             
+                  <%= builder.text_field :last_name, id: "last_name", :required => true %>
+              
+
+            
+                <%= builder.label "Contact :" %>
+             
+                  <%= builder.text_field :contact, id: "contact", :required => true %>
+              
+            <% end %>
+</div> 
+
+
+
+<div class="form-group" >
+      <h3>Address Details</h3>
+
+            <%= f.fields_for :address, @order.build_address do |address| %>
+            <div class="row">
+                <div class="col-md-6">
+                    <%= address.label "Shipping Address :" %>
+                </div>
+            </div>
+
+            
+                    <%= address.label :line_1 %>
+                             
+                    <%= address.text_field :line_1 , :required => true , id: 1%>
+                
+            
+                    <%= address.label :line_2 %>
+                
+                     <%= address.text_field :line_2, :required => true, id: 2 %>
+               
+            
+                  <%= address.label :street %>
+                
+                    <%= address.text_field :street, :required => true,id: 3%><br />
+                
+                  <%= address.label :city %>
+                
+                  <%= address.text_field :city , :required => true, id: 4%>
+                
+                    <%= address.label :state %>
+                
+                    <%= address.text_field :state, :required => true,id: 5 %><br />
+                
+                    <%= address.label :country %>
+                
+                    <%= address.text_field :country, :required => true,id: 5 %>
+                
+                    <%= address.label :postal_code %>
+                
+                    <%= address.text_field :postal_code, :required => true, id: 6 %>
+                    <%#= f.text_field :customer_id, :required => true, id: 6 %>
+                
+            
+             <div class="row">
+                <div class="col-sm-6 col-sm-push-4" id="mylist"></div>
+            </div>            
+           <%end%>
+          
+    </div>
+
+
+
+<div class="form-group" >
+      <h3>Order Details</h3>
+  <div class="form-group">
+    <%= f.label :order_no, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :order_no, class: "form-control" %>
+    </div>
+
+
+  </div>
+  <div class="form-group">
+    <%= f.label :tracking_no, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :tracking_no, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :is_express_delivery, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.check_box :is_express_delivery, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :is_customer_pickup, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.check_box :is_customer_pickup, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :dilivery_date, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.date_select :dilivery_date, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :order_currency, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :order_currency, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :special_instruction, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :special_instruction, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :order_value, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :order_value, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :user_id, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :user_id, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :address_id, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :address_id, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
+<% end %>

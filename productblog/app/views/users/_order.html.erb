@@ -1,0 +1,81 @@
+<div class="row">
+<div class="col-sm-3">
+ <%= f.label :order_no %>
+  </div>
+  <div class="col-sm-6">
+   <%= f.text_field :order_no , :required => true%>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-3">
+ <%= f.label :tracking_no %>
+ </div>
+  <div class="col-sm-6">
+   <%= f.text_field :tracking_no , :required => true%>
+  </div>
+</div>
+
+<div class="row">
+<div class="col-sm-3">
+  <%= f.label :delivery_date %>
+  </div>
+  <div class="col-sm-6">
+  <%= f.date_select :delivery_date, :required => true %>
+ </div>
+</div>
+
+<div class="row">
+<div class="col-sm-3">
+ 
+  </div>
+  <div class="col-sm-6">
+  <%= f.check_box :is_express_delivery %>
+   <%= f.label :is_express_delivery %>
+ </div>
+</div>
+
+<div class="row">
+<div class="col-sm-3">
+ 
+  </div>
+  <div class="col-sm-6">
+ 
+ <%= f.check_box :is_customer_pickup %>
+  <%= f.label :is_customer_pickup %>
+  </div>
+</div>
+
+
+
+
+
+<div class="row">
+<div class="col-sm-3">
+  <%= f.label :order_currency %>
+  </div>
+  <div class="col-sm-6">
+  <%= f.text_field :order_currency , :required => true%>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-sm-3">
+  <%= f.label :order_value %>
+  </div>
+  <div class="col-sm-6">
+  <%= f.text_field :order_value, :required => true %>
+</div>
+</div>
+
+
+
+<div class="row">
+<div class="col-sm-3">
+  <%= f.label :special_instruction %>
+  </div>
+  <div class="col-sm-6">
+  <%= f.text_field :special_instruction, :required => true %>
+</div>
+</div>
